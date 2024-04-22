@@ -9,8 +9,7 @@ public class city {
     private ResultSet resultSet;
 
     private int city_id;
-    private String city_name;
-    private String country_abr;
+    private String city_name, country_abr;
 
     public city() throws SQLException {
         this.conn = DBSingleton.getInstance().getConnection();

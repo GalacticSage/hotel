@@ -8,8 +8,7 @@ public class country {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    private String country_abr;
-    private String country_name;
+    private String country_abr, country_name;
 
     public country() throws SQLException {
         this.conn = DBSingleton.getInstance().getConnection();
