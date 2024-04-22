@@ -40,19 +40,42 @@ public class country {
         this.statement = conn.createStatement();
     }
 
-    public void readName() throws SQLException{
+    public void readName() throws SQLException {
         resultSet = statement.executeQuery("SELECT country_name FROM country WHERE country_abr = '" + country_abr + "'");
-        while(resultSet.next()){
+        while (resultSet.next()) {
             country_name = resultSet.getString("country_name");
         }
         this.country_name = country_name;
     }
 
-    public void readAbr() throws SQLException{
+    public void readAbr() throws SQLException {
         resultSet = statement.executeQuery("SELECT country_abr FROM country WHERE country_name = '" + country_name + "'");
-        while(resultSet.next()){
+        while (resultSet.next()) {
             country_abr = resultSet.getString("country_abr");
         }
         this.country_abr = country_abr;
+    }
+
+    public void insert() throws SQLException {
+        preparedStatement = conn.prepareStatement("INSERT INTO country (country_abr, country_name) VALUES (?, ?)");
+        preparedStatement.setString(1, country_abr);
+        preparedStatement.setString(2, country_name);
+        preparedStatement.executeUpdate();
+    }
+
+    public String getCountry_abr() {
+        return country_abr;
+    }
+
+    public void setCountry_abr(String country_abr) {
+        this.country_abr = country_abr;
+    }
+
+    public String getCountry_name() {
+        return country_name;
+    }
+
+    public void setCountry_name(String country_name) {
+        this.country_name = country_name;
     }
 }
