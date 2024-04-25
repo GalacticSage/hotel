@@ -18,8 +18,11 @@ public class loginRegisterPanel extends JPanel implements ActionListener {
 
         loginBtn = new JButton("Login");
         loginBtn.setBounds(100, 200, 100, 30);
+        loginBtn.addActionListener(this);
+
         registerBtn = new JButton("Register");
         registerBtn.setBounds(200, 200, 100, 30);
+        registerBtn.addActionListener(this);
 
         emailLabel = new JLabel("Email");
         emailLabel.setLabelFor(emailField);
@@ -62,6 +65,7 @@ public class loginRegisterPanel extends JPanel implements ActionListener {
                 psw = checkForUserInDB.lookIfUserExists(emailField.getText());
                 if (psw != null && psw.equals(passwordField.getText())) {
                     //gamePanel.setVisible(true);
+                    System.out.println("Login successful");
                     this.setVisible(false);
                 } else {
                     wrongLoginLabel.setVisible(true);
@@ -71,5 +75,6 @@ public class loginRegisterPanel extends JPanel implements ActionListener {
                 System.err.println("Database error: " + ex.getMessage());
             }
         }
+
     }
 }

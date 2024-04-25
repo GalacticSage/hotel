@@ -12,7 +12,7 @@ public class CheckForUserInDB {
     }
 
     public String lookIfUserExists(String email) throws SQLException {
-        String sql = "SELECT psw FROM client WHERE email LIKE ?";
+        String sql = "SELECT psw FROM client WHERE mail LIKE ?";
         PreparedStatement stmt = db.getConnection().prepareStatement(sql);
         stmt.setString(1, email);
         rs = stmt.executeQuery();
