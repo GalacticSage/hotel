@@ -1,11 +1,13 @@
-package com.mycompany.hotel;
+package com.mycompany.hotel.Backend.Tables;
+
+import com.mycompany.hotel.Backend.Connection.HotelDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class room {
+public class Room {
     private Connection conn;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -15,27 +17,27 @@ public class room {
     private String description;
     private double price;
 
-    public room() throws Exception {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Room() throws Exception {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
-    public room(int room_id) throws Exception {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Room(int room_id) throws Exception {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.room_id = room_id;
         read();
     }
 
-    public room(int floor, int room_nr, int max_people, String description, double price) throws Exception {
+    public Room(int floor, int room_nr, int max_people, String description, double price) throws Exception {
         this.floor = floor;
         this.room_nr = room_nr;
         this.max_people = max_people;
         this.description = description;
         this.price = price;
 
-        this.conn = DBSingleton.getInstance().getConnection();
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 

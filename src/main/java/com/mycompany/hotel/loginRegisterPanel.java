@@ -1,5 +1,7 @@
 package com.mycompany.hotel;
 
+import com.mycompany.hotel.Backend.CheckForUserInDB;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

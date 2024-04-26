@@ -1,8 +1,10 @@
-package com.mycompany.hotel;
+package com.mycompany.hotel.Backend.Tables;
+
+import com.mycompany.hotel.Backend.Connection.HotelDB;
 
 import java.sql.*;
 
-public class address {
+public class Address {
     private Connection conn;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -11,26 +13,26 @@ public class address {
     private int address_id, city_id, house_number, zip_code;
     private String street;
 
-    public address() throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Address() throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
-    public address(int address_id) throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Address(int address_id) throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.address_id = address_id;
         read();
     }
 
-    public address(int city_id, int house_number, int zip_code, String street) throws SQLException {
+    public Address(int city_id, int house_number, int zip_code, String street) throws SQLException {
         this.city_id = city_id;
         this.house_number = house_number;
         this.zip_code = zip_code;
         this.street = street;
 
-        this.conn = DBSingleton.getInstance().getConnection();
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 

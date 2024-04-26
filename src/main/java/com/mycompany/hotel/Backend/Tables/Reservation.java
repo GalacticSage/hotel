@@ -1,8 +1,10 @@
-package com.mycompany.hotel;
+package com.mycompany.hotel.Backend.Tables;
+
+import com.mycompany.hotel.Backend.Connection.HotelDB;
 
 import java.sql.*;
 
-public class reservation {
+public class Reservation {
     private Connection conn;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -11,27 +13,27 @@ public class reservation {
     private int reservation_id, client_id, room_id;
     private String reservation_start, reservation_end, reservation_made;
 
-    public reservation() throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Reservation() throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
-    public reservation(int reservation_id) throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Reservation(int reservation_id) throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.reservation_id = reservation_id;
         read();
     }
 
-    public reservation(int client_id, int room_id, String reservation_start, String reservation_end, String reservation_made) throws SQLException {
+    public Reservation(int client_id, int room_id, String reservation_start, String reservation_end, String reservation_made) throws SQLException {
         this.client_id = client_id;
         this.room_id = room_id;
         this.reservation_start = reservation_start;
         this.reservation_end = reservation_end;
         this.reservation_made = reservation_made;
 
-        this.conn = DBSingleton.getInstance().getConnection();
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 

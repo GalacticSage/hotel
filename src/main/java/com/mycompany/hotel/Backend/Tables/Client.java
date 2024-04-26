@@ -1,8 +1,10 @@
-package com.mycompany.hotel;
+package com.mycompany.hotel.Backend.Tables;
+
+import com.mycompany.hotel.Backend.Connection.HotelDB;
 
 import java.sql.*;
 
-public class client {
+public class Client {
     private Connection conn;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -11,27 +13,27 @@ public class client {
     private int client_id, address_id;
     private String first_name, last_name, email, psw, phone_number;
 
-    public client() throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Client() throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
-    public client(int client_id) throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Client(int client_id) throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.client_id = client_id;
         read();
     }
 
-    public client(String first_name, String last_name, String email, String psw, String phone_number) throws SQLException {
+    public Client(String first_name, String last_name, String email, String psw, String phone_number) throws SQLException {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.psw = psw;
         this.phone_number = phone_number;
 
-        this.conn = DBSingleton.getInstance().getConnection();
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 

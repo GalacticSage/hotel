@@ -1,8 +1,10 @@
-package com.mycompany.hotel;
+package com.mycompany.hotel.Backend.Tables;
+
+import com.mycompany.hotel.Backend.Connection.HotelDB;
 
 import java.sql.*;
 
-public class country {
+public class Country {
     private Connection conn;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -10,32 +12,32 @@ public class country {
 
     private String country_abr, country_name;
 
-    public country() throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Country() throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
-    public country(String country_abr) throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Country(String country_abr) throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.country_abr = country_abr;
         readName();
     }
 
-    public country(String country_name, boolean isName) throws SQLException {
-        this.conn = DBSingleton.getInstance().getConnection();
+    public Country(String country_name, boolean isName) throws SQLException {
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
 
         this.country_name = country_name;
         readAbr();
     }
 
-    public country(String country_abr, String country_name) throws SQLException {
+    public Country(String country_abr, String country_name) throws SQLException {
         this.country_abr = country_abr;
         this.country_name = country_name;
 
-        this.conn = DBSingleton.getInstance().getConnection();
+        this.conn = HotelDB.getInstance().getConnection();
         this.statement = conn.createStatement();
     }
 
