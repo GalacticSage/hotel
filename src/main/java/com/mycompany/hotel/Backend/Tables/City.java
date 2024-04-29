@@ -44,7 +44,9 @@ public class City {
     }
 
     public void readName() throws SQLException {
-        resultSet = statement.executeQuery("SELECT city_name FROM city WHERE city_id = " + city_id);
+        preparedStatement = conn.prepareStatement("SELECT city_name FROM city WHERE city_id = ?");
+        preparedStatement.setInt(1, city_id);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             city_name = resultSet.getString("city_name");
         }
@@ -52,7 +54,9 @@ public class City {
     }
 
     public void readId() throws SQLException {
-        resultSet = statement.executeQuery("SELECT city_id FROM city WHERE city_name = '" + city_name + "'");
+        preparedStatement = conn.prepareStatement("SELECT city_id FROM city WHERE city_name = ?");
+        preparedStatement.setString(1, city_name);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             city_id = resultSet.getInt("city_id");
         }

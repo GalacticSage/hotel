@@ -42,7 +42,9 @@ public class Room {
     }
 
     public void read() throws Exception {
-        resultSet = statement.executeQuery("SELECT * FROM room WHERE room_id = " + room_id);
+        preparedStatement = conn.prepareStatement("SELECT * FROM room WHERE room_id = ?");
+        preparedStatement.setInt(1, room_id);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             floor = resultSet.getInt("floor");
             room_nr = resultSet.getInt("room_nr");

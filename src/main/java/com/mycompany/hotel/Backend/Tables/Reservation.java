@@ -38,7 +38,9 @@ public class Reservation {
     }
 
     public void read() throws SQLException {
-        resultSet = statement.executeQuery("SELECT * FROM reservation WHERE reservation_id = " + reservation_id);
+        preparedStatement = conn.prepareStatement("SELECT * FROM reservation WHERE reservation_id = ?");
+        preparedStatement.setInt(1, reservation_id);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             client_id = resultSet.getInt("client_id");
             room_id = resultSet.getInt("room_id");

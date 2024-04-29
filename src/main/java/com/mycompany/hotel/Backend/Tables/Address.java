@@ -37,7 +37,9 @@ public class Address {
     }
 
     public void read() throws SQLException {
-        resultSet = statement.executeQuery("SELECT * FROM address WHERE address_id = " + address_id);
+        preparedStatement = conn.prepareStatement("SELECT * FROM address WHERE address_id = ?");
+        preparedStatement.setInt(1, address_id);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             city_id = resultSet.getInt("city_id");
             house_number = resultSet.getInt("house_number");

@@ -38,7 +38,9 @@ public class Client {
     }
 
     public void read() throws SQLException {
-        resultSet = statement.executeQuery("SELECT * FROM client WHERE client_id = " + client_id);
+        preparedStatement = conn.prepareStatement("SELECT * FROM client WHERE client_id = ?");
+        preparedStatement.setInt(1, client_id);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             address_id = resultSet.getInt("address_id");
             first_name = resultSet.getString("first_name");

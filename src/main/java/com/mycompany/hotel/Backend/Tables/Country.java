@@ -42,7 +42,9 @@ public class Country {
     }
 
     public void readName() throws SQLException {
-        resultSet = statement.executeQuery("SELECT country_name FROM country WHERE country_abr = '" + country_abr + "'");
+        preparedStatement = conn.prepareStatement("SELECT country_name FROM country WHERE country_abr = ?");
+        preparedStatement.setString(1, country_abr);
+        resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             country_name = resultSet.getString("country_name");
         }
